@@ -1,0 +1,25 @@
+{% extends 'employees/base.html' %} {% block content %}
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="text" name="name" placeholder="Name" value="{{employee.name}}" />
+  <input
+    type="text"
+    name="employee_id"
+    placeholder="employee_id"
+    value="{{employee.employee_id}}"
+  />
+  <select name="department">
+    <option value='' selected hidden>{{employee.department}}</option>
+    {% for department in department_list%}
+    <option value="{{department.id}}">{{department.name}}</option>
+    {% endfor %}
+  </select>
+  <select name="training">
+    <option value='' selected hidden>{{employee.training}}</option>
+    {% for training in training_list %}
+    <option value="{{training.id}}">{{training.name}}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" value="Submit" />
+</form>
+{% endblock %}
